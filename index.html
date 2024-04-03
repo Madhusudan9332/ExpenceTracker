@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sign-in page</title>
+    <!-- <link href="./output.css" rel="stylesheet" /> -->
+    <link rel="stylesheet" href="./css/index.css" />
+    <style>
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="video-container">
+        <video autoplay muted loop>
+          <source src="./assets/index/115979-706323929_medium.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+    </div>
+      <div class="myForms">
+        <div class="rollers">
+          <div class="left-roller side-roller"></div>
+          <div class="right-roller side-roller"></div>
+        </div>
+        <br />
+        <form id="signup-form" class="form" >
+          <h2 class="text-2xl">Sign Up</h2>
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Enter your username"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+          <button type="submit">Sign Up</button>
+          <p class="message">
+            Already registered? <a href="#" id="sign-in-form">Sign In</a>
+          </p>
+        </form>
+        <form id="signin-form" class="form">
+          <h2 class="text-2xl">Sign In</h2>
+          <div class="form-group">
+            <label for="signin-email">Email</label>
+            <input
+              type="email"
+              id="signin-email"
+              name="email"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="signin-password">Password</label>
+            <input
+              type="password"
+              id="signin-password"
+              name="password"
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+          <button type="submit">Sign In</button>
+          <p class="message">
+            Not registered?
+            <a href="#" id="sign-up-form"">Create an account</a>
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <script src="./script/index.js"></script>
+    <script>
+      
+    </script>
+  </body>
+</html>
