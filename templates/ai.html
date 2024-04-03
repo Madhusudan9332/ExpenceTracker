@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Chat Bot</title>
+    <link rel="stylesheet" href="../css/ai.css">
+  </head>
+  <body>
+    <header>
+      <h1>AI Chat Bot</h1>
+      <div class="button-container">
+        <button id="new-convertation" class="nav-btn">Add Convertation</button>
+        <br />
+        <button id="all-convertation" class="nav-btn">All Convertation</button>
+        <br />
+        <button id="clear-convertation" class="nav-btn">Clear Convertation</button>
+    </div>
+    </header>
+    <div id="chatContainer"></div>
+    <div class="chat-end"></div>
+    <div class="prompt-box">
+        <textarea id="userInput" placeholder="Type your message..."></textarea>
+        <button class="btn">Send</button>
+    </div>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/generative-ai": "https://esm.run/@google/generative-ai"
+        }
+      }
+    </script>
+    <script type="module" src="../script/myAi.js"></script>
+    <script type="module" src="../script/ai.js"></script>
+  </body>
+</html>

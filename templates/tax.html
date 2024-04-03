@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tax Calculator</title>
+    <link rel="stylesheet" href="../css/tax.css">
+    <style></style>
+  </head>
+  <body>
+    <div class="container">
+      <table>
+        <thead>
+          <tr>
+            <th>Income Range</th>
+            <th>Tax Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Up to ₹2,50,000</td>
+            <td>Nil</td>
+          </tr>
+          <tr>
+            <td>₹2,50,001 to ₹5,00,000</td>
+            <td>5%</td>
+          </tr>
+          <tr>
+            <td>₹5,00,001 to ₹10,00,000</td>
+            <td>20%</td>
+          </tr>
+          <tr>
+            <td>Above ₹10,00,000</td>
+            <td>30%</td>
+          </tr>
+        </tbody>
+      </table>
+      <h1>Tax Calculator</h1>
+      <h3>Your net income is: <span id="netIncomeValue"></span></h3>
+      <button id="addIncomeButton">Add more income amount</button><br />
+      <!-- Modal for entering extra income amount -->
+      <div id="myModal" class="modal">
+        <label for="extraIncome">Enter extra income amount:</label><br />
+        <input
+          type="number"
+          id="extraIncome"
+          placeholder="Enter extra income amount"
+        /><br />
+        <button id="submitExtraIncome">Submit</button>
+      </div>
+
+      <button id="calculateTaxBtn">Calculate Tax</button>
+      <div id="taxResult"></div>
+      <h3>Tax Rates for Indian Rupees</h3>
+
+      <p>
+        <strong>Tax Information:</strong> Tax is a mandatory financial charge
+        imposed by the government on individuals or businesses to fund various
+        public expenditures.
+      </p>
+      <p>
+        <strong>Money:</strong> Money is any item or verifiable record that is
+        generally accepted as payment for goods and services and repayment of
+        debts.
+      </p>
+    </div>
+
+    <script src="../script/tax.js"></script>
+  </body>
+</html>

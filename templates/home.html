@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <link rel="stylesheet" href="../css/home.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+    />
+    <style>
+      .profile-pics-container {
+        position: absolute;
+        display: none;
+        background-color: #ffffff;
+        box-shadow: 0 2px 4px #0000001a;
+        border-radius: 10px;
+        padding: 20px;
+        right: 10%;
+      }
+      #profile-pics-grid {
+        display: grid;
+        max-width: fit-content;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 5px;
+        row-gap: 5px;
+        margin-bottom: 10px;
+      }
+      .img {
+        width: 50px; /* Set width to 50px */
+        height: 50px; /* Set height to 50px */
+        object-fit: cover; /* Maintain aspect ratio and fill container */
+        border-radius: 50%;
+      }
+      .highlighted {
+        border: 1px solid #666;
+      }
+      .profile-pics-Apply {
+        display: flex;
+        justify-content: space-between;
+      }
+      .profile-pics-Apply button {
+        padding: 5px;
+        margin: 5px;
+      }
+
+      .menubar-container {
+        position: absolute;
+        background-color: #ffffff;
+        box-shadow: 0 2px 4px #000000;
+        border-radius: 10px;
+        padding: 20px;
+        z-index: 1;
+        display: none;
+      }
+      .menubar-container h3 {
+        padding: 5px;
+      }
+      .menubar-container h3:hover {
+        background-color: #aaa;
+      }
+
+      #toggleAsideButton {
+        background-color: transparent;
+        font-size: 1rem;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+        transition: transform 0.3s ease;
+        transform: scale(1.5);
+      }
+      #toggleAsideButton:active {
+        transform: scale(2);
+        rotate: 45deg;
+      }
+
+      .notification-container{
+        position: absolute;
+        width: 300px;        
+        height: 80vh;
+        overflow: scroll;
+        background-color: #ffffff;
+        box-shadow: 0 2px 4px #000000;
+        border-radius: 10px;
+        padding: 20px;
+        right: 10%;
+        display: none;
+      }
+      .notification-container p {
+        display: flex;
+        justify-content: space-between;
+        margin: 5px;
+      }
+      .notification-container span:hover {
+        background-color: #aaa;
+      }
+      .notification-container span{
+        display: block;
+        padding: 5px;
+      }
+      .notification-container span:nth-child(2){
+        background-color: red;
+        width: 10px;
+      }
+      .selected{
+        background-color: #aaa;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <nav class="profile-navbar navbar">
+          <div class="left-side flex">
+            <div class="menubar">
+              <i class="bx bx-menu-alt-left" style="font-size: 3rem"></i>
+            </div>
+            <div class="logo">
+              <span style="font-size: 3rem">𝔼𝕩-</span>
+              <span style="font-size: 2rem">Ⓣⓡⓐⓒⓚⓔⓡ</span>
+            </div>
+          </div>
+          <div class="right-side">
+            <div class="profile flex">
+              <div class="profile-pic">
+                <img
+                  id="profile-pic-img"
+                  src="../assets/home/myImage.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="notification">
+                <div class="notification-icon">
+                  <i
+                    class="bx bx-message-rounded-dots"
+                    style="font-size: 2.5rem"
+                  ></i>
+                </div>
+                <span
+                  class="notification-number"
+                  style="position: absolute; top: 1.5rem; right: 2rem"
+                  >1</span
+                >
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <div class="profile-pics-container">
+        <div id="profile-pics-grid"></div>
+        <div class="profile-pics-Apply">
+          <button><label for="coustom-pic">Coustom Pics</label></button>
+          <img src="" id="selected-img" class="img" style="opacity: 0" />
+          <button id="profile-pic-Apply">Apply</button>
+        </div>
+        <input type="file" id="coustom-pic" style="display: none" />
+      </div>
+      <main class="flex">
+        <button id="toggleAsideButton"><i class="bx bx-x"></i></button>
+        <aside class="aside">
+          <!-- Image -->
+          <div class="image">
+            <img
+              src="../assets/home/1000_F_317204950_wVdLYnEPcBvuLyEJgeMfqttYcPrix5qj.jpg"
+              alt="Profile Picture"
+            />
+          </div>
+
+          <!-- Footer content -->
+          <footer>
+            <h2>Money and Expenses</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+              viverra justo ac nulla tempor, in vehicula est feugiat. Donec eu
+              magna at orci pharetra blandit.
+            </p>
+          </footer>
+        </aside>
+
+        <div class="sub-container">
+          <header>
+            <nav class="page-navbar navbar">
+              <div class="home-page page">HOME</div>
+              <div class="ai-page page">AI</div>
+              <div class="tax-page page">TAX</div>
+            </nav>
+          </header>
+          <main class="page-container">
+            <iframe
+              id="pageFrame"
+              src="./expence_Income.html"
+              frameborder="1"
+              width="100%"
+            ></iframe>
+          </main>
+        </div>
+      </main>
+    </div>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/generative-ai": "https://esm.run/@google/generative-ai"
+        }
+      }
+    </script>
+    <script type="module" src="../script/myAi.js"></script>
+    <script type="module" src="../script/home.js"></script>
+  </body>
+</html>

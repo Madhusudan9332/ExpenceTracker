@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expence-Income</title>
+    <link rel="stylesheet" href="../css/expence_Income.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <style></style>
+  </head>
+  <body>
+    <header>
+      <div class="balance-info">
+        <h2>TOTAL BALANCE</h2>
+        <span>BALANCE</span>
+        <select name="" id="currency">
+          <option value="&#8377;">&#8377; (INR)</option> <!-- Indian Rupee -->
+          <option value="&#36;">&#36; (USD)</option> <!-- US Dollar -->
+          <option value="&#8364;">&#8364; (EUR)</option> <!-- Euro -->
+          <option value="&#163;">&#163; (GBP)</option> <!-- British Pound Sterling -->
+          <option value="&#165;">&#165; (JPY)</option> <!-- Japanese Yen -->
+          <option value="&#165;">&#165; (CNY)</option> <!-- Chinese Yuan -->
+          <option value="&#8355;">&#8355; (FRF)</option> <!-- French Franc -->
+          <option value="&#8356;">&#8356; (BEF)</option> <!-- Belgian Franc -->
+          <option value="&#8358;">&#8358; (NGN)</option> <!-- Nigerian Naira -->
+          <option value="&#8359;">&#8359; (ILS)</option> <!-- Israeli Shekel -->
+          <option value="&#8361;">&#8361; (KRW)</option> <!-- South Korean Won -->
+          <option value="&#8370;">&#8370; (TRY)</option> <!-- Turkish Lira -->
+          <option value="&#8364;">&#8364; (DEM)</option> <!-- German Mark -->
+          <option value="&#8365;">&#8365; (ESP)</option> <!-- Spanish Peseta -->
+          <option value="&#8366;">&#8366; (ITL)</option> <!-- Italian Lira -->
+          <option value="&#8367;">&#8367; (PTE)</option> <!-- Portuguese Escudo -->
+          <option value="&#8368;">&#8368; (JPY)</option> <!-- Dutch Guilder -->
+          <option value="&#8369;">&#8369; (FIM)</option> <!-- Finnish Markka -->
+        </select>
+        <div class="total-inc-exp">
+          <div id="total-income">
+            <h4>INCOME</h4>
+            <span>Total Income</span>
+          </div>
+          <div id="total-expence">
+            <h4>EXPENCE</h4>
+            <span>Total Expence</span>
+          </div>
+        </div>
+      </div>
+      <nav class="navbar">
+        <div id="expence-page" class="active">EXPENCE</div>
+        <div id="income-page">INCOME</div>
+      </nav>
+    </header>
+    <main>
+      <form id="income-form" class="form hide">
+        <div class="form-group">
+          <label for="income-description">DESCRIPTION</label><br />
+          <input type="text" id="income-description" required />
+        </div>
+        <div class="form-group">
+          <label for="income-labels">LABELS</label><br />
+          <input type="text" id="income-labels" />
+        </div>
+        <div class="form-group">
+          <label for="income-payer">PAYER</label><br />
+          <input type="text" id="income-payer" required />
+        </div>
+        <div class="form-group">
+          <label for="income-amount">AMOUNT</label><br />
+          <input type="number" id="income-amount" required />
+        </div>
+        <div class="form-group date-time-group">
+          <div class="date-field">
+            <label for="income-date">DATE</label><br />
+            <input type="date" id="income-date" value="2000-01-01" />
+          </div>
+          <div class="time-field">
+            <label for="expence-time">TIME</label><br />
+            <input type="time" id="expence-time" value="00:00" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="income-address">ADDRESS</label><br />
+          <textarea
+            id="income-address"
+            cols="30"
+            rows="1"
+            onkeypress="auto_grow(this)"
+            onkeyup="auto_grow(this)"
+            style="overflow: hidden; resize: none; padding: 5px"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label>ATTACHMENTS</label><br />
+          <button>
+            <label for="income-attachments">Add Bils</label><br />
+          </button>
+          <input type="file" id="income-attachments" style="display: none" />
+        </div>
+        <button type="submit">ADD INCOME</button>
+      </form>
+
+      <form id="expence-form" class="form show">
+        <div class="form-group">
+          <label for="expence-description">DESCRIPTION</label><br />
+          <input type="text" id="expence-description" required />
+        </div>
+        <div class="form-group">
+          <label for="expence-labels">LABELS</label><br />
+          <input type="text" id="expence-labels" />
+        </div>
+        <div class="form-group">
+          <label for="expence-to-pay">TO PAY</label><br />
+          <input type="text" id="expence-to-pay" required />
+        </div>
+        <div class="form-group">
+          <label for="expence-amount">AMOUNT</label><br />
+          <input type="number" id="expence-amount" required />
+        </div>
+        <div class="form-group date-time-group">
+          <div class="date-field">
+            <label for="expence-date">DATE</label>
+            <input type="date" id="expence-date" value="2000-01-01" />
+          </div>
+          <div class="time-field">
+            <label for="expence-time">TIME</label>
+            <input type="time" id="expence-time" value="00:00" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="expence-address">ADDRESS</label><br />
+          <textarea
+            id="expence-address"
+            cols="30"
+            rows="1"
+            onkeypress="auto_grow(this)"
+            onkeyup="auto_grow(this)"
+            style="overflow: hidden; resize: none; padding: 5px"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label>ATTACHMENTS</label><br />
+          <button>
+            <label for="expence-attachments">Add Bils</label><br />
+          </button>
+          <input type="file" id="expence-attachments" style="display: none" />
+        </div>
+        <button type="submit">ADD EXPENCE</button>
+      </form>
+    </main>
+
+    <script src="../script/expence_Income.js"></script>
+
+    <script></script>
+  </body>
+</html>
