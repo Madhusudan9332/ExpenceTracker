@@ -118,6 +118,12 @@ border-radius: 5px;
 .key-item {
 padding: 15px;
 }
+.key-item::after{
+    content: "";
+    display: block;
+    width: 5px;
+    background-color: red;
+}
 .key-item:hover {
 background-color: gray;
 }

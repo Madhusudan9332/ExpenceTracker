@@ -7,20 +7,38 @@ if (loggedIn == "false") {
   }, 0);
 }
 
-import { myAi } from "./myAi.js";
+import { myAi , storeData } from "./myAi.js";
+
+const loggedInUser = localStorage.getItem("loggedInUser");
+const dataKeys = [
+  "username",
+  "password",
+  "profilePic",
+  "expenceData",
+  "incomeData",
+  "total_expence",
+  "total_income",
+  "convertationKey",
+  "allConvertation",
+  "allNotifications",
+  "convertation",
+  "data",
+];
+storeData(loggedInUser,dataKeys)
+
 async function runRandomTask(senderName, recieverName) {
   // ;
   //   // Generate a random number between 3000 and 10000
 
   const interval = setInterval(async () => {
-    const randomDelay = Math.floor(Math.random() * (20000 - 5000 + 1)) + 5000;
+    const randomDelay = Math.floor(Math.random() * (900000 - 2000 + 1)) + 2000;
     // ;
     setTimeout(async () => {
       try {
         const notificationPrompt = `create a 10-15 word notification from sender name ${senderName} to reciever name ${recieverName} and a dummy Message related to money transaction`;
         const newNotification = await myAi(notificationPrompt, "");
 
-        console.log(newNotification);
+        // console.log(newNotification);
         const allNotifications =
           JSON.parse(localStorage.getItem("allNotifications")) || {};
         const currentDate = new Date();
@@ -55,7 +73,7 @@ function loggedInUserData(loggedInUser) {
     } else localStorage.setItem(key, data);
   }
 }
-const loggedInUser = localStorage.getItem("loggedInUser");
+localStorage.getItem("loggedInUser");
 loggedInUserData(loggedInUser);
 
 // Get reference to the iframe
@@ -126,8 +144,7 @@ toggleAsideButton.addEventListener("click", () => {
     <input type="checkbox" id="selectAll">
     <button id="delete-all">Delete All</button>
     `;
-    const notifications =
-      JSON.parse(localStorage.getItem("allNotifications")) || {};
+    const notifications = JSON.parse(localStorage.getItem("allNotifications")) || {};
     for (const keys in notifications) {
       const para = document.createElement("p");
       const span1 = document.createElement("span");
@@ -160,7 +177,7 @@ const notificationContainer = document.querySelector(".notification-container");
 const notificationNumber = document.querySelector(".notification-number");
 const profilePicsContainer = document.querySelector(".profile-pics-container");
 
-notificationNumber.innerHTML = notificationContainer.children.length;
+notificationNumber.innerHTML = notificationContainer.children.length-2;
 // Display and hide on click
 {
   document.body.addEventListener("click", function (event) {
@@ -265,22 +282,39 @@ document.querySelector("#selectAll").addEventListener("change", () => {
     });
   }
   deleteAllButton.addEventListener("click", function () {
-    if(isChecked)notificationContainer.innerHTML = "";
+    if(isChecked)notificationContainer.innerHTML = `
+    <input type="checkbox" id="selectAll">
+    <button id="delete-all">Delete All</button>
+    `;
+    localStorage.setItem("allNotifications",null);
+    notificationNumber.innerHTML = notificationContainer.children.length-2;
   });
 });
 
 
 notificationContainer.addEventListener("click", function (event) {
   if (event.target.className === "delete-notification") {
-    event.target.parentNode.remove();
+    const parentElement = event.target.parentNode;
+    var index = Array.from(notificationContainer.children).indexOf(parentElement)-2;
+    parentElement.remove();
     setTimeout(() => {
       notificationContainer.style.display = "block";
     }, 0);
-    notificationNumber.innerHTML = notificationContainer.children.length;
+    // debugger
+    const allNotifications = JSON.parse(localStorage.getItem("allNotifications"));
+    const keys = Object.keys(allNotifications);
+    // alert(JSON.stringify(allNotifications))
+    const key = keys[index];
+    // alert(key)
+    delete allNotifications[key];
+    // alert(JSON.stringify(allNotifications))
+    localStorage.setItem("allNotifications",JSON.stringify(allNotifications));
+    notificationNumber.innerHTML  = notificationContainer.children.length-2;
   }
 });
 
 function notificationUpdate(id, notification) {
+const div = notificationContainer;
   const para = document.createElement("p");
   const span1 = document.createElement("span");
   const span = document.createElement("span");
@@ -289,8 +323,8 @@ function notificationUpdate(id, notification) {
   div.appendChild(para);
   para.appendChild(span1);
   para.appendChild(span);
-  notificationNumber.innerHTML = notificationContainer.children.length;
+  notificationNumber.innerHTML = notificationContainer.children.length-2;
 }
 
 const recieverName = localStorage.getItem("username");
-// runRandomTask("ExTracker", recieverName);
+runRandomTask("ExTracker", recieverName);

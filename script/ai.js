@@ -35,8 +35,6 @@ window.onload = () => {
   chatContainer.innerHTML = data;
 };
 
-
-
 function userMessage(message) {
   const messageElement = document.createElement("div");
   messageElement.className = "user-message";
@@ -64,6 +62,7 @@ function createNewConvertation() {
   const timeStamp = new Date().toString();
   const data = localStorage.getItem("data");
   const convertation = localStorage.getItem("convertation");
+  if (!convertation) return;
   allConvertation[timeStamp] = {
     data: data,
     convertation: convertation,
@@ -121,4 +120,17 @@ function toRememberConvertation(num) {
     return keysPromps;
   }
   return "";
+}
+
+const rowContainer = document.querySelector(".row");
+const keyItem = document.querySelector(".key-item");
+{
+  document.body.addEventListener("click", function (event) {
+    if (
+      !rowContainer.contains(event.target) &&
+      !keyItem.contains(event.target)
+    ) {
+      rowContainer.style.display = "none";
+    }
+  });
 }

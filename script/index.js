@@ -1,22 +1,7 @@
 let loggedIn = false;
 localStorage.setItem("loggedIn", loggedIn);
+import { storeData } from "./myAi";
 
-function storeData(objectKey, dataKeys) {
-  debugger;
-  let objectData = {};
-  const preObjcetData = localStorage.getItem(objectKey);
-  if (preObjcetData) objectData = JSON.parse(preObjcetData);
-  for (key of dataKeys) {
-    const preData = localStorage.getItem(key);
-    if (preData) {
-      if(typeof(preData)=="object")objectData[key] = JSON.parse(preData);
-      else objectData[key] = preData;
-    }
-    localStorage.removeItem(key);
-  }
-  const objectDataJSON = JSON.stringify(objectData);
-  localStorage.setItem(objectKey, objectDataJSON);
-}
 const loggedInUser = localStorage.getItem("loggedInUser");
 const dataKeys = [
   "username",
@@ -28,9 +13,12 @@ const dataKeys = [
   "total_income",
   "convertationKey",
   "allConvertation",
+  "allNotifications",
+  "convertation",
+  "data",
 ];
 storeData(loggedInUser, dataKeys);
-localStorage.setItem("loggedInUser",null);
+localStorage.setItem("loggedInUser", null);
 
 //   let users = new Object();
 const signUp = document.getElementById("signup-form");
@@ -39,7 +27,7 @@ const signInform = document.getElementById("sign-in-form");
 const signUpform = document.getElementById("sign-up-form");
 
 signUp.addEventListener("submit", () => {
-  debugger;
+  // debugger;
   const form = document.getElementById("signup-form");
   const username = form.elements["username"].value;
   const email = form.elements["email"].value;
