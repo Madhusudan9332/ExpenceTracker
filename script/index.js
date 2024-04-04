@@ -1,6 +1,6 @@
 let loggedIn = false;
 localStorage.setItem("loggedIn", loggedIn);
-import { storeData } from "./myAi";
+import { storeData } from "./myAi.js";
 
 const loggedInUser = localStorage.getItem("loggedInUser");
 const dataKeys = [
