@@ -84,6 +84,10 @@ window.onload = function () {
     };
     var rzp1 = new Razorpay(options);
     document.getElementById("payNow").onclick = function (e) {
+      if(tax == 0){
+        alert("You can't make Payment your TAX is Nill.")
+        return
+      }
       rzp1.open();
       e.preventDefault();
     };
