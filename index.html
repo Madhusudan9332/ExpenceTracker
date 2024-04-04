@@ -97,8 +97,12 @@ button[type="submit"] {
 #signup-form {
   display: none;
 }
-
-
+#forgotpassword-form{
+display: none;
+}
+#resetpassword-form{
+  display: none;
+}
 
 /* Styles for form div */
 
@@ -232,7 +236,60 @@ button[type="submit"] {
             <button type="submit">Sign In</button>
             <p class="message">
               Not registered?
-              <a href="#" id="sign-up-form"">Create an account</a>
+              <a href="#" id="sign-up-form">Create an account</a>
+            </p>
+            <p class="message">
+              Forgot your password?
+              <a href="#" id="forgot-password-form">Get help</a>
+            </p>
+          </form>
+          <form id="forgotpassword-form" class="form" >
+            <h2 class="text-2xl">Find your account</h2>     
+            <p>Enter your email to find your Account</p>       
+            <div class="form-group">
+              <label for="forgotpassword-email">Enter your email</label>
+              <input
+                type="email"
+                id="forgotpassword-email"
+                name="email"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+            <button type="submit">Next</button>
+            <p class="message">
+              Can't reset?<a href="./index.html">back to login page</a>
+            </p>
+          </form>
+          <form id="resetpassword-form" class="form" >
+            <h2 class="text-2xl">Reset your password</h2>     
+            <p>Enter your new password to update your Account</p>       
+            <div class="form-group">
+              <label for="reset-password">Enter new password</label>
+              <input
+                type="password"
+                id="reset-password"
+                name="reset-password"
+                placeholder="new password..."
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="confirm-password">Confirm new password</label>
+              <input
+                type="password"
+                id="confirm-password"
+                name="confirm-password"
+                placeholder="Confirm new password..."
+                required
+              />
+            </div>
+            <button type="submit">Reset your password</button>
+            <p class="message">
+              Reset Password latter <a href="./templates/home.html">just login</a>
+            </p>
+            <p class="message">
+              Can't reset?<a href="./index.html">back to login page</a>
             </p>
           </form>
         </div>

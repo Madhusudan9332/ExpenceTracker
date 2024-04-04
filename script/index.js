@@ -39,9 +39,15 @@ localStorage.setItem("loggedInUser", null);
 //   let users = new Object();
 const signUp = document.getElementById("signup-form");
 const signIn = document.getElementById("signin-form");
+const forgotPassword = document.getElementById("forgotpassword-form");
+const resetPassword = document.getElementById("resetpassword-form");
 const signInform = document.getElementById("sign-in-form");
 const signUpform = document.getElementById("sign-up-form");
+const forgotPasswordform = document.getElementById("forgot-password-form");
 
+// to submit forms
+let tempMail = "";
+let tempData = {};
 signUp.addEventListener("submit", () => {
   // debugger;
   const form = document.getElementById("signup-form");
@@ -63,7 +69,6 @@ signUp.addEventListener("submit", () => {
     alert("User is already exists please try with another email!");
   }
 });
-
 signIn.addEventListener("submit", () => {
   const form = document.getElementById("signin-form");
   const email = form.elements["email"].value;
@@ -87,7 +92,37 @@ signIn.addEventListener("submit", () => {
     alert("User is not Registered Please Check your email!");
   }
 });
+forgotPassword.addEventListener("submit", () => {
+  const form = document.getElementById("forgotpassword-form");
+  const email = form.elements["email"].value;
 
+  // Check user is already exist or not
+  tempMail = email;
+  tempData = JSON.parse(localStorage.getItem(email)) || {};
+  if (tempData) {
+    localStorage.setItem("loggedIn",true);
+    forgotPassword.style.display = "none";
+    resetPassword.style.display = "block";
+  } else {
+    alert("User is not Registered Please Check your email!");
+  }
+});
+resetPassword.addEventListener("submit", () => {
+  const form = document.getElementById("resetpassword-form");
+
+  const resPassword = form.elements["reset-password"].value;
+  const confPassword = form.elements["confirm-password"].value;
+
+  if (resPassword == confPassword) {
+    tempData["password"] = resPassword;
+    localStorage.setItem(tempMail,JSON.stringify(tempData));
+    alert("Password Changed Successfully")
+    window.location.replace("../index.html");
+  } else {
+    alert("Confirm password correctly!");
+  }
+});
+// to display,hide or change forms
 signInform.addEventListener("click", () => {
   signIn.style.display = "block";
   signUp.style.display = "none";
@@ -95,4 +130,8 @@ signInform.addEventListener("click", () => {
 signUpform.addEventListener("click", () => {
   signIn.style.display = "none";
   signUp.style.display = "block";
+});
+forgotPasswordform.addEventListener("click", () => {
+  signIn.style.display = "none";
+  forgotPassword.style.display = "block";
 });
