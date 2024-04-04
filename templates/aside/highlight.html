@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Financial Advice</title>
+    <style>
+      #financialAdvice {
+        background-color: #f5f5f5;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 20px;
+        margin: 20px 0;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #333;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Financial Advice</h1>
+    <button id="getAdvice">Get Advice</button>
+    <input type="text" id="userInput" placeholder="Enter more questions..." />
+    <button id="clearButton">Clear</button>
+    <div id="financialAdvice"></div>
+
+    <script></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/generative-ai": "https://esm.run/@google/generative-ai"
+        }
+      }
+    </script>
+    <script>
+      // Get the clear button element
+      const clearButton = document.getElementById("clearButton");
+
+      // Add a click event listener to the clear button
+      clearButton.addEventListener("click", function () {
+        // Get the financial advice div
+        const financialAdviceDiv = document.getElementById("financialAdvice");
+
+        // Clear the inner HTML of the financial advice div
+        financialAdviceDiv.innerHTML = "";
+      });
+    </script>
+    <script type="module" src="../../script/aside/highlight.js"></script>
+  </body>
+</html>

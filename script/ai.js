@@ -4,11 +4,12 @@ if (!loggedIn)
     window.location.replace("../index.html");
   }, 0);
 
-import { myAi } from "./myAi.js";
+import { myAi , formatFinancialAdvice } from "./myAi.js";
 
 console.log(myAi(""));
 document.querySelector(".btn").addEventListener("click", async () => {
   const userInput = document.querySelector("#userInput").value;
+  document.querySelector("#userInput").value = "";
   userMessage(userInput);
   // console.log(typeof userInput);
   const prePrompts = toRememberConvertation(10);
@@ -45,7 +46,7 @@ function userMessage(message) {
 function botMessage(message) {
   const messageElement = document.createElement("div");
   messageElement.className = "bot-message";
-  message.replaceAll("**", "<br/>");
+  message = formatFinancialAdvice(message)
   messageElement.innerHTML = message;
   chatContainer.appendChild(messageElement);
 }

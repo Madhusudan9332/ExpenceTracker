@@ -37,5 +37,20 @@ export function storeData(objectKey, dataKeys) {
   const objectDataJSON = JSON.stringify(objectData);
   localStorage.setItem(objectKey, objectDataJSON);
 } 
+export function formatFinancialAdvice(advice) {
+  console.log("advice:", advice);
+  if (!advice) {
+    console.log("empty advice string");
+    return "";
+  }
+  const adviceWithStrong = advice.replace(
+    /\*\*(.*?)\*\*/g,
+    "<strong>$1</strong>"
+  );
+  const adviceWithBreaks = adviceWithStrong.replace(/\*/g, '<br />');
+  const stringWithCodeTags = adviceWithBreaks.replace(/```(.*?)```/g, '<code>$1</code>');
+  console.log(stringWithCodeTags)
+  return stringWithCodeTags;
+}
 
-myAi()
+// myAi()

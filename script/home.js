@@ -7,7 +7,7 @@ if (loggedIn == "false") {
   }, 0);
 }
 
-import { myAi , storeData } from "./myAi.js";
+import { myAi, storeData } from "./myAi.js";
 
 const loggedInUser = localStorage.getItem("loggedInUser");
 const dataKeys = [
@@ -24,7 +24,7 @@ const dataKeys = [
   "convertation",
   "data",
 ];
-storeData(loggedInUser,dataKeys)
+storeData(loggedInUser, dataKeys);
 
 async function runRandomTask(senderName, recieverName) {
   // ;
@@ -123,6 +123,7 @@ toggleAsideButton.addEventListener("click", () => {
     const menuBar = [
       "home",
       "profile",
+      "transactions",
       "statistics",
       "highlight",
       "contact",
@@ -144,7 +145,8 @@ toggleAsideButton.addEventListener("click", () => {
     <input type="checkbox" id="selectAll">
     <button id="delete-all">Delete All</button>
     `;
-    const notifications = JSON.parse(localStorage.getItem("allNotifications")) || {};
+    const notifications =
+      JSON.parse(localStorage.getItem("allNotifications")) || {};
     for (const keys in notifications) {
       const para = document.createElement("p");
       const span1 = document.createElement("span");
@@ -158,7 +160,7 @@ toggleAsideButton.addEventListener("click", () => {
     }
     document.querySelector(".notification").appendChild(div);
   }
-  // pics
+  //Created pics Grid
   for (let i = 1; i <= 12; i++) {
     const img = document.createElement("img");
     img.className = "img";
@@ -177,8 +179,8 @@ const notificationContainer = document.querySelector(".notification-container");
 const notificationNumber = document.querySelector(".notification-number");
 const profilePicsContainer = document.querySelector(".profile-pics-container");
 
-notificationNumber.innerHTML = notificationContainer.children.length-2;
-// Display and hide on click
+notificationNumber.innerHTML = notificationContainer.children.length - 2;
+// Display and hide on click Containers
 {
   document.body.addEventListener("click", function (event) {
     if (
@@ -214,6 +216,25 @@ notificationNumber.innerHTML = notificationContainer.children.length-2;
   });
 }
 
+// Handle Navbar
+const menuItems = document.querySelectorAll(".menubar-container h3");
+menuItems.forEach((menuItem) => {
+  menuItem.addEventListener("click", function (event) {
+    event.preventDefault(); // Prevent the default behavior of the link
+    const page = `${this.id}`;
+    loadPage(page);
+    console.log(page);
+  });
+});
+function loadPage(page) {
+  if(page=="log-out"){
+    setTimeout(() => {window.location.replace("../index.html")}, 0);
+    return
+  }
+  document.getElementById('contentFrame').src = `../templates/aside/${page}.html`;
+}
+loadPage("home")
+// Handle Profile-pic Container Buttons
 img.forEach((e) => {
   e.addEventListener("click", () => {
     img.forEach((el) => {
@@ -243,78 +264,92 @@ document.getElementById("profile-pic-Apply").addEventListener("click", () => {
   document.getElementById("selected-img").style.opacity = "0";
   profilePicImg.src = base64String;
 });
-// Get the file input element
-const fileInput = document.getElementById("coustom-pic");
-// Add event listener for when a file is selected
-fileInput.addEventListener("change", function (event) {
-  const selectedFile = event.target.files[0];
-  const reader = new FileReader();
 
-  // Define the onload event handler
-  reader.onload = function (event) {
-    // Store the Base64 string representation of the image in local storage
-    localStorage.setItem("profilePic", event.target.result);
-    document.getElementById("selected-img").src = event.target.result;
-    document.getElementById("selected-img").style.opacity = "1";
-  };
+// Get the Prife-pic input element
+{
+  const fileInput = document.getElementById("coustom-pic");
+  // Add event listener for when a file is selected
+  fileInput.addEventListener("change", function (event) {
+    const selectedFile = event.target.files[0];
+    const reader = new FileReader();
 
-  // Read the selected file as a data URL (Base64 string)
-  reader.readAsDataURL(selectedFile);
-});
-// Retrieve the Base64-encoded image data from local storage
-const base64String = localStorage.getItem("profilePic");
-if (base64String.length > 10) profilePicImg.src = base64String;
-else {
-  document.getElementById("profile-pic-img").setAttribute("src", base64String);
+    // Define the onload event handler
+    reader.onload = function (event) {
+      // Store the Base64 string representation of the image in local storage
+      localStorage.setItem("profilePic", event.target.result);
+      document.getElementById("selected-img").src = event.target.result;
+      document.getElementById("selected-img").style.opacity = "1";
+    };
+
+    // Read the selected file as a data URL (Base64 string)
+    reader.readAsDataURL(selectedFile);
+  });
+  // Retrieve the Base64-encoded image data from local storage
+  const base64String = localStorage.getItem("profilePic");
+  if (base64String.length > 10) profilePicImg.src = base64String;
+  else {
+    document
+      .getElementById("profile-pic-img")
+      .setAttribute("src", base64String);
+  }
 }
 // Notifivation handle
-document.querySelector("#selectAll").addEventListener("change", () => {
-  const isChecked = document.querySelector("#selectAll").checked;
-  const notificationItems = notificationContainer.querySelectorAll("span");
-  const deleteAllButton = document.querySelector("#delete-all");
-  if (isChecked) {
-    notificationItems.forEach((item) => {
-      item.classList.add("selected");
+{
+  document.querySelector("#selectAll").addEventListener("change", () => {
+    const isChecked = document.querySelector("#selectAll").checked;
+    const notificationItems = notificationContainer.querySelectorAll("span");
+    const deleteAllButton = document.querySelector("#delete-all");
+    if (isChecked) {
+      notificationItems.forEach((item) => {
+        item.classList.add("selected");
+      });
+    } else {
+      notificationItems.forEach((item) => {
+        item.classList.remove("selected");
+      });
+    }
+    deleteAllButton.addEventListener("click", function () {
+      if (isChecked)
+        notificationContainer.innerHTML = `
+      <input type="checkbox" id="selectAll">
+      <button id="delete-all">Delete All</button>
+      `;
+      localStorage.setItem("allNotifications", null);
+      notificationNumber.innerHTML = notificationContainer.children.length - 2;
     });
-  } else {
-    notificationItems.forEach((item) => {
-      item.classList.remove("selected");
-    });
-  }
-  deleteAllButton.addEventListener("click", function () {
-    if(isChecked)notificationContainer.innerHTML = `
-    <input type="checkbox" id="selectAll">
-    <button id="delete-all">Delete All</button>
-    `;
-    localStorage.setItem("allNotifications",null);
-    notificationNumber.innerHTML = notificationContainer.children.length-2;
   });
-});
+
+  notificationContainer.addEventListener("click", function (event) {
+    if (event.target.className === "delete-notification") {
+      const parentElement = event.target.parentNode;
+      var index =
+        Array.from(notificationContainer.children).indexOf(parentElement) - 2;
+      parentElement.remove();
+      setTimeout(() => {
+        notificationContainer.style.display = "block";
+      }, 0);
+      // debugger
+      const allNotifications = JSON.parse(
+        localStorage.getItem("allNotifications")
+      );
+      const keys = Object.keys(allNotifications);
+      // alert(JSON.stringify(allNotifications))
+      const key = keys[index];
+      // alert(key)
+      delete allNotifications[key];
+      // alert(JSON.stringify(allNotifications))
+      localStorage.setItem(
+        "allNotifications",
+        JSON.stringify(allNotifications)
+      );
+      notificationNumber.innerHTML = notificationContainer.children.length - 2;
+    }
+  });
 
 
-notificationContainer.addEventListener("click", function (event) {
-  if (event.target.className === "delete-notification") {
-    const parentElement = event.target.parentNode;
-    var index = Array.from(notificationContainer.children).indexOf(parentElement)-2;
-    parentElement.remove();
-    setTimeout(() => {
-      notificationContainer.style.display = "block";
-    }, 0);
-    // debugger
-    const allNotifications = JSON.parse(localStorage.getItem("allNotifications"));
-    const keys = Object.keys(allNotifications);
-    // alert(JSON.stringify(allNotifications))
-    const key = keys[index];
-    // alert(key)
-    delete allNotifications[key];
-    // alert(JSON.stringify(allNotifications))
-    localStorage.setItem("allNotifications",JSON.stringify(allNotifications));
-    notificationNumber.innerHTML  = notificationContainer.children.length-2;
-  }
-});
-
+}
 function notificationUpdate(id, notification) {
-const div = notificationContainer;
+  const div = notificationContainer;
   const para = document.createElement("p");
   const span1 = document.createElement("span");
   const span = document.createElement("span");
@@ -323,8 +358,7 @@ const div = notificationContainer;
   div.appendChild(para);
   para.appendChild(span1);
   para.appendChild(span);
-  notificationNumber.innerHTML = notificationContainer.children.length-2;
+  notificationNumber.innerHTML = notificationContainer.children.length - 2;
 }
-
 const recieverName = localStorage.getItem("username");
 runRandomTask("ExTracker", recieverName);

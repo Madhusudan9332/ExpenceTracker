@@ -60,8 +60,13 @@
       .menubar-container h3:hover {
         background-color: #aaa;
       }
-
-      #toggleAsideButton {
+      .closeButtons {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+      .closeButton {
+        display: block;
         background-color: transparent;
         font-size: 1rem;
         border: none;
@@ -70,21 +75,23 @@
         transition: transform 0.3s ease;
         transform: scale(1.5);
       }
-      #toggleAsideButton:active {
+      .closeButton:active {
         transform: scale(2);
         rotate: 45deg;
       }
-
-      .notification-container{
+      .sub-container {
+        position: relative;
+      }
+      .notification-container {
         position: absolute;
-        width: 300px;        
+        width: 300px;
         height: 80vh;
         overflow: scroll;
         background-color: #ffffff;
         box-shadow: 0 2px 4px #000000;
         border-radius: 10px;
         padding: 20px;
-        right: 10%;
+        right: 10vw;
         display: none;
       }
       .notification-container p {
@@ -95,16 +102,22 @@
       .notification-container span:hover {
         background-color: #aaa;
       }
-      .notification-container span{
+      .notification-container span {
         display: block;
         padding: 5px;
       }
-      .notification-container span:nth-child(2){
+      .notification-container span:nth-child(2) {
         background-color: red;
         width: 10px;
       }
-      .selected{
+      .selected {
         background-color: #aaa;
+      }
+      .full-width {
+        width: 100%;
+      }
+      .zero-width {
+        display: none;
       }
     </style>
   </head>
@@ -112,7 +125,7 @@
     <div class="container">
       <header>
         <nav class="profile-navbar navbar">
-          <div class="left-side flex">
+          <div class="left-side">
             <div class="menubar">
               <i class="bx bx-menu-alt-left" style="font-size: 3rem"></i>
             </div>
@@ -157,44 +170,42 @@
         </div>
         <input type="file" id="coustom-pic" style="display: none" />
       </div>
+      <div class="closeButtons">
+        <button id="toggleAsideButton" class="closeButton">
+          <i class="bx bx-x"></i>
+        </button>
+        <button id="closeContainerButton" class="closeButton">
+          <i class="bx bx-x"></i>
+        </button>
+      </div>
       <main class="flex">
-        <button id="toggleAsideButton"><i class="bx bx-x"></i></button>
-        <aside class="aside">
-          <!-- Image -->
-          <div class="image">
-            <img
-              src="../assets/home/1000_F_317204950_wVdLYnEPcBvuLyEJgeMfqttYcPrix5qj.jpg"
-              alt="Profile Picture"
-            />
-          </div>
-
-          <!-- Footer content -->
-          <footer>
-            <h2>Money and Expenses</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-              viverra justo ac nulla tempor, in vehicula est feugiat. Donec eu
-              magna at orci pharetra blandit.
-            </p>
-          </footer>
+        <aside class="aside" id="dynamicAside">
+          <iframe
+            id="contentFrame"
+            frameborder="0"
+            width="100%"
+            height="100%"
+          ></iframe>
         </aside>
 
         <div class="sub-container">
-          <header>
-            <nav class="page-navbar navbar">
-              <div class="home-page page">HOME</div>
-              <div class="ai-page page">AI</div>
-              <div class="tax-page page">TAX</div>
-            </nav>
-          </header>
-          <main class="page-container">
-            <iframe
-              id="pageFrame"
-              src="./expence_Income.html"
-              frameborder="1"
-              width="100%"
-            ></iframe>
-          </main>
+          <div class="content">
+            <header>
+              <nav class="page-navbar navbar">
+                <div class="home-page page">HOME</div>
+                <div class="ai-page page">AI</div>
+                <div class="tax-page page">TAX</div>
+              </nav>
+            </header>
+            <main class="page-container">
+              <iframe
+                id="pageFrame"
+                src="./expence_Income.html"
+                frameborder="1"
+                width="100%"
+              ></iframe>
+            </main>
+          </div>
         </div>
       </main>
     </div>
@@ -208,5 +219,19 @@
     </script>
     <script type="module" src="../script/myAi.js"></script>
     <script type="module" src="../script/home.js"></script>
+    <script>
+      // Get the closeContainerButton, dynamicAside, and subContainer elements
+      const closeContainerButton = document.getElementById(
+        "closeContainerButton"
+      );
+      const dynamicAside = document.getElementById("dynamicAside");
+      const subContainer = document.querySelector(".sub-container");
+
+      // Add a click event listener to the closeContainerButton
+      closeContainerButton.addEventListener("click", function () {
+        dynamicAside.classList.toggle('full-width');
+    subContainer.classList.toggle('zero-width');
+      });
+    </script>
   </body>
 </html>

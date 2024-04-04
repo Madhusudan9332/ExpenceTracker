@@ -1,0 +1,208 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+<style>
+    body {
+	font-family: Arial;
+}
+
+.container {
+	max-width: 1180px;
+	margin: 0 auto;
+	line-height: 1.5;
+}
+/*  header style starts */
+.site-banner {
+	min-height: 400px;
+	background-image: url('https://media.istockphoto.com/id/1342226850/photo/woman-checking-her-montly-expenses-while-having-coffee-break.jpg?s=612x612&w=0&k=20&c=XTLjsY7O4Kf4y5gne0rOqdlPUWWng2QDISWd2AofooU=');
+	background-size: cover;
+	background-position: center;
+	color: #222;
+}
+
+.site-banner a {
+	color: #222;
+	text-decoration: none;
+	font-weight: bold;
+	padding: 12px;
+}
+
+.header-menu {
+	padding: 40px 20px;
+}
+
+#header-right-menu {
+	float: right;
+}
+
+.header-active {
+	background: rgba(0, 0, 0, 0.5);
+    border-radius: 25px;
+}
+
+.heading {
+	color: #222;
+	text-align: center;
+	font-family: cursive;
+	padding: 40px 0px;
+	font-size: 3em;
+	margin: 0px;
+}
+/*  header style ends */
+
+.footer {
+	display: flex;
+}
+
+.footer-column {
+	width: 33.3%;
+	float: left;
+    overflow: hidden;
+}
+
+.map-image {
+	width: 100%;
+}
+.map-image:hover{
+    scale: 1.3;
+}
+.contact-form-container {
+	background-color: #eaeaea;
+}
+
+img {
+	vertical-align: middle;
+}
+
+.tile-content {
+	padding: 20px 40px;
+}
+
+.tile-content .contact-row {
+	margin-bottom: 20px;
+}
+
+.tile-field {
+	margin-left: 20px;
+}
+
+.form-field {
+	width: 100%;
+	padding: 10px 8px;
+    border-radius: 4px;
+    border: #d9d8d8 1px solid;
+}
+
+.button {
+	color: #ffffff;
+	padding: 10px 30px 10px 30px;
+	border-radius: 20px;
+	background: linear-gradient(to right, #08a9df, #12054a);
+	border: 0px;
+}
+
+#menu-icon {
+	display: none;
+	float: right;
+}
+
+@media screen and (max-width: 1000px) {
+	.footer-column {
+		width: 50%;
+	}
+	.contact-form-container {
+		width: 100%;
+	}
+	.footer {
+		display: block;
+	}
+}
+
+@media screen and (max-width: 540px) {
+	#header-right-menu {
+		float: none;
+		display: none;
+	}
+	#header-right-menu a {
+		display: block;
+	}
+	.heading {
+		padding: 0px;
+	}
+	.tile-content {
+    	padding: 0px 20px;
+	}
+
+	.footer-column {
+		width: 100%;
+	}
+	.site-banner{
+        background-image: url("");
+    }
+	#menu-icon {
+		display: block;
+		float: right;
+	}
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="site-banner">
+			<div class="header-menu">
+				<a href="" style="font-size: 30px;"><b style="font-size: 50px;">Ex</b> Tracker</a> 
+				<span id="menu-icon" onClick="toggleMenu()"><img src="../../assets/aside/contact/menu.png" /></span>
+				<span id="header-right-menu"> 
+					<a href="#">Our work</a> 
+					<a href="#">About</a> 
+					<a href="#">News</a>
+					<a href="#" class="header-active">Contact</a>
+				</span>
+			</div>
+			<h1 class="heading">Contact Us</h1>
+		</div><div class="footer">
+			<div class="footer-column"><img class="map-image" src="../../assets/aside/contact/map.png" /></div>
+			<div class="footer-column">
+				<div class="tile-content">
+					<h1>Meet Us</h1>
+					<div class="contact-row">
+						<i class='bx bxs-phone-call'></i><span class="tile-field">+466723723666</span>
+					</div>
+					<div class="contact-row">
+						<i class='bx bxl-gmail' ></i><span class="tile-field">contact@admin.com</span>
+					</div>
+					<div class="contact-row">
+						<i class='bx bx-map' ></i><span class="tile-field">1784 Griffin Street, Alabama</span>
+					</div>
+				</div>
+			</div>
+			<div class="footer-column contact-form-container">
+				<div class="tile-content">
+					<form method="POST">
+						<h1>Contact</h1>
+						<div class="contact-row">
+							<input type="text" class="form-field" placeholder="Name">
+						</div>
+						<div class="contact-row">
+							<textarea rows="5" class="form-field" placeholder="Message"></textarea>
+						</div>
+						<button class="button">Send</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		function toggleMenu() {
+			var menuElement = document.getElementById("header-right-menu");
+			if (menuElement.style.display === "block") {
+				menuElement.style.display = "none";
+			} else {
+				menuElement.style.display = "block";
+			}
+		}
+	</script>
+</body>
+</html>

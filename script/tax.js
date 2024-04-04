@@ -5,7 +5,9 @@ if (!loggedIn)
   }, 0);
 
 let taxIncome = 0;
+
 window.onload = function () {
+  var tax = 0;
   const netIncomeValue = document.getElementById("netIncomeValue");
   const addIncomeButton = document.getElementById("addIncomeButton");
   const modal = document.getElementById("myModal");
@@ -39,8 +41,8 @@ window.onload = function () {
 
   document.getElementById("calculateTaxBtn").addEventListener("click", () => {
     // debugger
-    let tax = 0;
 
+    tax = 0;
     // Your tax calculation logic here
     // This is just a sample calculation, you should replace it with your actual tax calculation logic
     if (netIncome <= 250000) {
@@ -54,7 +56,36 @@ window.onload = function () {
     }
 
     // Display the tax result
+    console.log(tax, "inner");
     const taxResultElement = document.getElementById("taxResult");
     taxResultElement.textContent = `Your tax amount is: ₹${tax.toFixed(2)}`;
+
+    var options = {
+      key: "rzp_test_tfFO1ehDKKilpi", // Enter the Key ID generated from the Dashboard
+      amount: `${tax * 100}`, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      currency: "INR",
+      name: "Acme Corp", //your business name
+      description: "Test Transaction",
+      image: "https://example.com/your_logo",
+      // "order_id": "order_9A33XWu170gUtm", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      callback_url: "https://eneqd3r9zrjok.x.pipedream.net/",
+      prefill: {
+        //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
+        name: "Gaurav Kumar", //your customer's name
+        email: "gaurav.kumar@example.com",
+        contact: "9000090000", //Provide the customer's phone number for better conversion rates
+      },
+      notes: {
+        address: "Razorpay Corporate Office",
+      },
+      theme: {
+        color: "#3399cc",
+      },
+    };
+    var rzp1 = new Razorpay(options);
+    document.getElementById("payNow").onclick = function (e) {
+      rzp1.open();
+      e.preventDefault();
+    };
   });
 };

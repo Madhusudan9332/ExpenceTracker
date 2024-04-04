@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Income and Expence Tracker</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+      }
+
+      nav {
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+      }
+
+      nav a {
+        color: #fff;
+        text-decoration: none;
+        margin-right: 20px;
+        transition: all 0.3s ease;
+      }
+
+      nav a:hover {
+        text-decoration: underline;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .transaction {
+        padding: 10px;
+        background-color: #f9f9f9;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .transaction:hover {
+        background-color: #eaeaea;
+      }
+
+      .popup {
+        display: none;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+      }
+
+      #popup h2 {
+        margin-top: 0;
+      }
+
+      #popupTable {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      #popupTable td {
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      #popupTable tr:last-child td {
+        border-bottom: none;
+      }
+
+      #closePopup {
+        margin-top: 10px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      #closePopup:hover {
+        background-color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="#" id="showExpence">Expence</a>
+      <a href="#" id="showIncome">Income</a>
+      <a href="#" id="showTransactions">All Transactions</a>
+    </nav>
+    <div class="container">
+      <h1 id="income">Income</h1>
+      <!-- Display income data here -->
+
+      <h1 id="expence">Expence</h1>
+      <!-- Display expence data here -->
+
+      <h1 id="transactions">All Transactions</h1>
+      <!-- Display all transactions data here -->
+    </div>
+
+    <!-- Popup div for displaying transaction details -->
+    <div id="popup" class="popup">
+      <h2>Transaction Details</h2>
+      <table id="popupTable">
+        <!-- Table content will be added dynamically -->
+      </table>
+      <button id="closePopup">Close</button>
+    </div>
+
+    <script>
+      // Add your JavaScript code here to fetch and display the data
+      document.addEventListener("DOMContentLoaded", function () {
+        const expenceData = JSON.parse(localStorage.getItem("expenceData"));
+        const incomeData = JSON.parse(localStorage.getItem("incomeData"));
+        const allTransactionsData = { ...incomeData, ...expenceData };
+
+        const displayExpences = () => {
+          displayData(expenceData);
+        };
+
+        const displayIncome = () => {
+          displayData(incomeData);
+        };
+
+        const displayAllTransactions = () => {
+          displayData(allTransactionsData);
+        };
+
+        const displayData = (data) => {
+          const container = document.createElement("div");
+          for (const key in data) {
+            const record = data[key];
+            const item = document.createElement("div");
+            let currency = "&#8377;";
+            item.innerHTML = `${key}: ${currency}${
+              record["expence-amount"] || record["income-amount"]
+            }`;
+            item.dataset.id = key;
+            item.classList.add("transaction");
+            container.appendChild(item);
+          }
+          document.querySelector(".container").innerHTML = "";
+          document.querySelector(".container").appendChild(container);
+
+          // Add click event listener to all transaction elements
+          document.querySelectorAll(".transaction").forEach((item) => {
+            item.addEventListener("click", () => {
+              const id = item.dataset.id;
+              const record = allTransactionsData[id];
+              const popupTable = document.getElementById("popupTable");
+              popupTable.innerHTML = ""; // Clear existing content
+              for (const key in record) {
+                const row = document.createElement("tr");
+                const cell1 = document.createElement("td");
+                const cell2 = document.createElement("td");
+                cell1.textContent = key;
+                cell2.textContent = record[key];
+                row.appendChild(cell1);
+                row.appendChild(cell2);
+                popupTable.appendChild(row);
+              }
+              document.getElementById("popup").style.display = "block";
+            });
+          });
+        };
+
+        // Initial display
+        displayExpences();
+
+        // Event listeners for navigation links
+        document
+          .getElementById("showExpence")
+          .addEventListener("click", displayExpences);
+        document
+          .getElementById("showIncome")
+          .addEventListener("click", displayIncome);
+        document
+          .getElementById("showTransactions")
+          .addEventListener("click", displayAllTransactions);
+
+        // Add click event listener to close popup button
+        document.getElementById("closePopup").addEventListener("click", () => {
+          document.getElementById("popup").style.display = "none";
+        });
+      });
+    </script>
+  </body>
+</html>

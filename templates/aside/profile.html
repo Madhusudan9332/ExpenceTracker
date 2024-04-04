@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Professional Profile</title>
+    <!-- <link rel="stylesheet" href="styles.css" /> -->
+  </head>
+  <body>
+    <header>
+      <h1>Welcome to Your Professional Profile</h1>
+    </header>
+
+    <section class="profile">
+      <div class="profile-info">
+        <img
+          id="profilePic"
+          src="../../assets/home/profilePics/pp1.png"
+          alt="Profile Picture"
+        />
+        <!-- <button onclick="editField('profilePic')">Edit Picture</button> -->
+        <h2 id="name">John Doe</h2>
+        <button onclick="editField('name')">Edit Name</button>
+        <p id="profession">Web Developer</p>
+        <button onclick="editField('profession')">Edit Profession</button>
+        <p id="location">Location: New York, USA</p>
+        <button onclick="editField('location')">Edit Location</button>
+        <p id="email">Email: john@example.com</p>
+        <button onclick="editField('email')">Edit Email</button>
+      </div>
+
+      <div class="profile-bio">
+        <h3>About Me</h3>
+        <p id="bio">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at tellus
+          consectetur, fermentum mauris nec, scelerisque felis. Suspendisse eget
+          ipsum ipsum. Curabitur tincidunt ac risus nec cursus. Nullam bibendum
+          volutpat orci.
+        </p>
+        <button onclick="editField('bio')">Edit Bio</button>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2024 Professional Website. All rights reserved.</p>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        loadProfileFromLocalStorage();
+      });
+
+      function editField(fieldId) {
+        // debugger
+        var newValue = prompt("Enter new value:");
+        if (newValue !== null && newValue !== "") {
+          document.getElementById(fieldId).textContent = newValue;
+          saveProfileToLocalStorage();
+        }
+      }
+
+      function saveProfileToLocalStorage() {
+        // debugger
+        var profile = {
+          profilePic: localStorage.getItem("profilePic"),
+          name: document.getElementById("name").textContent,
+          profession: document.getElementById("profession").textContent,
+          location: document.getElementById("location").textContent,
+          email: document.getElementById("email").textContent,
+          bio: document.getElementById("bio").textContent,
+        };
+        localStorage.setItem("profile", JSON.stringify(profile));
+      }
+
+      function loadProfileFromLocalStorage() {
+        var profile = JSON.parse(localStorage.getItem("profile"));
+        console.log(profile);
+        alert("loaded");
+        if (profile) {
+          document.getElementById(
+            "profilePic"
+          ).src = `../${profilePicFromStorage}`;
+          document.getElementById("name").textContent = profile.name;
+          document.getElementById("profession").textContent =
+            profile.profession;
+          document.getElementById("location").textContent = profile.location;
+          document.getElementById("email").textContent = profile.email;
+          document.getElementById("bio").textContent = profile.bio;
+        }
+      }
+
+      // debugger
+      const imgSrc = localStorage.getItem("profilePic");
+      if (imgSrc) document.getElementById("profilePic").src = `../${imgSrc}`;
+      saveProfileToLocalStorage();
+      // console.log("loaded")
+    </script>
+  </body>
+</html>

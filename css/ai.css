@@ -10,23 +10,42 @@
 }
 
 .user-message {
-    background-color: #d3e5fc;
+    background-color: #dcedc8;
     color: #000;
-    margin-bottom: 10px;
-    padding: 5px 10px;
-    border-radius: 5px;
+    margin-bottom: 20px; /* Reduced margin */
+    padding: 15px 20px; /* Increased padding */
+    border-radius: 10px; /* Larger border radius */
     clear: both; /* Ensure each message starts on a new line */
-    float: right; /* Align user messages to the left */
+    float: right; /* Align bot messages to the right */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow for depth */
+    max-width: 70%; /* Limit message width for readability */
+    font-size: 16px; /* Adjust font size */
+    line-height: 1.4; /* Adjust line height for readability */
+    font-family: Arial, sans-serif; /* Choose a common font family */
 }
 
-.bot-message {
+/* .bot-message {
     background-color: #dcedc8;
     color: #000;
     margin-bottom: 40px;
     padding: 5px 10px;
     border-radius: 5px;
+    clear: both; 
+    float: left; 
+} */
+.bot-message {
+    background-color: #dcedc8;
+    color: #000;
+    margin-bottom: 20px; /* Reduced margin */
+    padding: 15px 20px; /* Increased padding */
+    border-radius: 10px; /* Larger border radius */
     clear: both; /* Ensure each message starts on a new line */
     float: left; /* Align bot messages to the right */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow for depth */
+    max-width: 70%; /* Limit message width for readability */
+    font-size: 16px; /* Adjust font size */
+    line-height: 1.4; /* Adjust line height for readability */
+    font-family: Arial, sans-serif; /* Choose a common font family */
 }
 
 .bot-message::before{
