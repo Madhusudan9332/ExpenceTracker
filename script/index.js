@@ -1,7 +1,23 @@
 let loggedIn = false;
 localStorage.setItem("loggedIn", loggedIn);
-import { storeData } from "./myAi.js";
+// import { storeData } from "./myAi.js";
 
+function storeData(objectKey, dataKeys) {
+  // debugger;
+  let objectData = {};
+  const preObjcetData = localStorage.getItem(objectKey);
+  if (preObjcetData) objectData = JSON.parse(preObjcetData);
+  for (let key of dataKeys) {
+    const preData = localStorage.getItem(key);
+    if (preData) {
+      if (typeof preData == "object") objectData[key] = JSON.parse(preData);
+      else objectData[key] = preData;
+    }
+    localStorage.removeItem(key);
+  }
+  const objectDataJSON = JSON.stringify(objectData);
+  localStorage.setItem(objectKey, objectDataJSON);
+}
 const loggedInUser = localStorage.getItem("loggedInUser");
 const dataKeys = [
   "username",
