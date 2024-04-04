@@ -14,6 +14,7 @@ const dataKeys = [
   "username",
   "password",
   "profilePic",
+  "profile",
   "expenceData",
   "incomeData",
   "total_expence",
@@ -23,6 +24,8 @@ const dataKeys = [
   "allNotifications",
   "convertation",
   "data",
+  "rzp_checkout_anon_id",
+  "rzp_device_id"
 ];
 storeData(loggedInUser, dataKeys);
 

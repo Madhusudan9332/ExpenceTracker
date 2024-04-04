@@ -5,6 +5,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Professional Profile</title>
     <!-- <link rel="stylesheet" href="styles.css" /> -->
+    <style>
+      /* General Styles */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      header {
+        background-color: F0F0F0;
+        color: #222;
+        padding: 20px;
+      }
+
+      header h1 {
+        margin: 0;
+      }
+
+      footer {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        text-align: center;
+      }
+
+      /* Profile Section */
+      .profile {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+      }
+
+      .profile-info {
+        flex: 1;
+        margin-right: 20px;
+      }
+
+      .profile-bio {
+        flex: 1;
+      }
+
+      /* Profile Picture */
+      #profilePic {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        margin-bottom: 20px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        box-shadow: 0 2px 4px #0000001a;
+      }
+
+      /* Edit Buttons */
+      button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        margin-top: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      button:hover {
+        background-color: 007BFF;
+      }
+
+      /* Profile Details */
+      h2,
+      h3 {
+        color: #333;
+      }
+
+      p {
+        margin: 10px 0;
+        border-bottom: 2px solid #333;
+      }
+
+      /* Text Input */
+      input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+      }
+
+      textarea {
+        width: 100%;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+      }
+
+      /* Responsive Styles */
+      @media screen and (max-width: 768px) {
+        .profile {
+          flex-direction: column;
+        }
+
+        .profile-info,
+        .profile-bio {
+          margin-right: 0;
+        }
+      }
+    </style>
   </head>
   <body>
     <header>
@@ -40,29 +150,29 @@
         <button onclick="editField('bio')">Edit Bio</button>
       </div>
     </section>
-
     <footer>
       <p>&copy; 2024 Professional Website. All rights reserved.</p>
     </footer>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        loadProfileFromLocalStorage();
-      });
+      // document.addEventListener("DOMContentLoaded", function () {
+      //   loadProfileFromLocalStorage();
+      // });
 
       function editField(fieldId) {
         // debugger
         var newValue = prompt("Enter new value:");
         if (newValue !== null && newValue !== "") {
+          debugger;
           document.getElementById(fieldId).textContent = newValue;
           saveProfileToLocalStorage();
+          loadProfileFromLocalStorage();
         }
       }
 
       function saveProfileToLocalStorage() {
-        // debugger
+        debugger;
         var profile = {
-          profilePic: localStorage.getItem("profilePic"),
           name: document.getElementById("name").textContent,
           profession: document.getElementById("profession").textContent,
           location: document.getElementById("location").textContent,
@@ -73,13 +183,9 @@
       }
 
       function loadProfileFromLocalStorage() {
-        var profile = JSON.parse(localStorage.getItem("profile"));
-        console.log(profile);
-        alert("loaded");
+        debugger;
+        const profile = JSON.parse(localStorage.getItem("profile"));
         if (profile) {
-          document.getElementById(
-            "profilePic"
-          ).src = `../${profilePicFromStorage}`;
           document.getElementById("name").textContent = profile.name;
           document.getElementById("profession").textContent =
             profile.profession;
@@ -89,11 +195,19 @@
         }
       }
 
-      // debugger
-      const imgSrc = localStorage.getItem("profilePic");
-      if (imgSrc) document.getElementById("profilePic").src = `../${imgSrc}`;
-      saveProfileToLocalStorage();
-      // console.log("loaded")
+      // debugger;
+      function updatePic() {
+        const imgSrc =
+          localStorage.getItem("profilePic") ||
+          "../../assets/home/profilePics/pp1.png";
+        if (imgSrc.length > 50)
+          document.getElementById("profilePic").src = imgSrc;
+        else {
+          document.getElementById("profilePic").src = `../${imgSrc}`;
+        }
+      }
+      updatePic();
+      loadProfileFromLocalStorage();
     </script>
   </body>
 </html>

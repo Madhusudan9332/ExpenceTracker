@@ -89,10 +89,10 @@ signIn.addEventListener("submit", () => {
 });
 
 signInform.addEventListener("click", () => {
-  signIn.style.display = "flex";
+  signIn.style.display = "block";
   signUp.style.display = "none";
 });
 signUpform.addEventListener("click", () => {
   signIn.style.display = "none";
-  signUp.style.display = "flex";
+  signUp.style.display = "block";
 });

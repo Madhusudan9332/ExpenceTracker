@@ -4,91 +4,240 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>sign-in page</title>
-    <!-- <link href="./output.css" rel="stylesheet" /> -->
-    <link rel="stylesheet" href="./css/index.css" />
-    <style>
+    <!-- <link rel="stylesheet" href="./css/index.css" /> -->
+<style>
+  /* Styles for form div */
 
-    </style>
+  .container {
+  width: 100vw;
+  height: 90vh;
+    display: flex;
+    background-size: cover;
+    background-position: center;
+    background-image: url(../assets/index/white-office-desk-with-computer-notepad-pencil-green-leaf-other-supplies_483511-693.jpg);
+}
+
+.sub-container{
+  display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+    align-items: center;
+}
+.video-container video {
+  width: 100%;
+    height: auto;
+    display: block; /* Ensures video fills the container properly */
+    object-fit: cover; /* Ensures the video covers the entire container */
+}
+
+/* Styles for form titles */
+.myForms {
+  /* margin: 20px auto; Add margin from top and bottom, and align center */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.text-2xl {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+/* // form-groups */
+
+.form-group {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+/* Styles for labels */
+label {
+  font-weight: bold;
+  flex-basis: 30%; /* Adjust label width */
+}
+
+/* Styles for inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  flex-basis: 65%; /* Adjust input width */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Styles for buttons */
+button[type="submit"] {
+  flex-basis: 100%;
+  padding: 10px;
+  width: 100%;
+  padding: 20px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4caf50;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Styles for messages */
+.message {
+  text-align: center;
+}
+
+
+
+
+/* Hide sign-up form initially */
+#signup-form {
+  display: none;
+}
+
+
+
+/* Styles for form div */
+
+
+/* Styles for rollers */
+.rollers {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.side-roller {
+  width: 50px;
+  height: 10px;
+  background-color: #ccc;
+  border-radius: 10px;
+  margin: 0 5px;
+}
+
+/* Adjust width of rollers for smaller screens */
+@media screen and (max-width: 600px) {
+  .container {
+    margin-top: 5rem;
+  }
+  .sub-container{
+  display: flex;
+  flex-wrap: wrap-reverse;
+  }
+  .right-side{
+    display: none;
+  }
+  .side-roller {
+    width: 40px;
+    height: 8px;
+  }
+
+}
+
+/* Adjust width of rollers for even smaller screens */
+@media screen and (max-width: 400px) {
+  .side-roller {
+    width: 30px;
+    height: 6px;
+  }
+}
+
+
+/* /// Video align */
+
+
+
+
+
+</style>
+
   </head>
   <body>
     <div class="container">
-      <div class="video-container">
-        <video autoplay muted loop>
-          <source src="./assets/index/115979-706323929_medium.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-    </div>
-      <div class="myForms">
-        <div class="rollers">
-          <div class="left-roller side-roller"></div>
-          <div class="right-roller side-roller"></div>
+      <div class="sub-container">
+        <div class="video-container">
+          <video autoplay muted loop>
+            <source src="./assets/index/115979-706323929_medium.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
         </div>
-        <br />
-        <form id="signup-form" class="form" >
-          <h2 class="text-2xl">Sign Up</h2>
-          <div class="form-group">
-            <label for="username">Username</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              placeholder="Enter your username"
-              required
-            />
+        <div class="myForms">
+          <div class="rollers">
+            <div class="left-roller side-roller"></div>
+            <div class="right-roller side-roller"></div>
           </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Enter your email"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Enter your password"
-              required
-            />
-          </div>
-          <button type="submit">Sign Up</button>
-          <p class="message">
-            Already registered? <a href="#" id="sign-in-form">Sign In</a>
-          </p>
-        </form>
-        <form id="signin-form" class="form">
-          <h2 class="text-2xl">Sign In</h2>
-          <div class="form-group">
-            <label for="signin-email">Email</label>
-            <input
-              type="email"
-              id="signin-email"
-              name="email"
-              placeholder="Enter your email"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="signin-password">Password</label>
-            <input
-              type="password"
-              id="signin-password"
-              name="password"
-              placeholder="Enter your password"
-              required
-            />
-          </div>
-          <button type="submit">Sign In</button>
-          <p class="message">
-            Not registered?
-            <a href="#" id="sign-up-form"">Create an account</a>
-          </p>
-        </form>
+          <br />
+          <form id="signup-form" class="form" >
+            <h2 class="text-2xl">Sign Up</h2>
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Enter your username"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+            <button type="submit">Sign Up</button>
+            <p class="message">
+              Already registered? <a href="#" id="sign-in-form">Sign In</a>
+            </p>
+          </form>
+          <form id="signin-form" class="form">
+            <h2 class="text-2xl">Sign In</h2>
+            <div class="form-group">
+              <label for="signin-email">Email</label>
+              <input
+                type="email"
+                id="signin-email"
+                name="email"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="signin-password">Password</label>
+              <input
+                type="password"
+                id="signin-password"
+                name="password"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+            <button type="submit">Sign In</button>
+            <p class="message">
+              Not registered?
+              <a href="#" id="sign-up-form"">Create an account</a>
+            </p>
+          </form>
+        </div>
+        <div class="right-side">
+        </div>
       </div>
     </div>
     <script type="importmap">
