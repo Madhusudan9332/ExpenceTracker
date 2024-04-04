@@ -127,6 +127,7 @@ const keyItem = document.querySelector(".key-item");
 {
   document.body.addEventListener("click", function (event) {
     if (
+      rowContainer &&
       !rowContainer.contains(event.target) &&
       !keyItem.contains(event.target)
     ) {
