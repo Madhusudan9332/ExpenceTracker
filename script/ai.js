@@ -19,6 +19,7 @@ document.querySelector(".btn").addEventListener("click", async () => {
   convertation[userInput] = responce;
   localStorage.setItem("convertation", JSON.stringify(convertation));
   botMessage(responce);
+  storeData();
 });
 
 // Variables
@@ -50,7 +51,6 @@ function botMessage(message) {
 }
 function storeData() {
   localStorage.setItem("data", chatContainer.innerHTML);
-  localStorage.setItem("convertation", JSON.stringify(convertation));
 }
 
 function createNewConvertation() {
