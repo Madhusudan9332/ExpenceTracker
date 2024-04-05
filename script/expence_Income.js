@@ -83,6 +83,7 @@ document.querySelector("#income-form").addEventListener("submit", function (e) {
   e.preventDefault(); // Prevent default form submission
   saveFormData("income-form"); // Call saveFormData function with income form ID
   totalAmount("incomeData");
+  window.location.reload()
   return true;
 });
 
@@ -92,6 +93,7 @@ document
     e.preventDefault(); // Prevent default form submission
     saveFormData("expence-form"); // Call saveFormData function with expence form ID
     totalAmount("expenceData");
+    window.location.reload()
     return true;
   });
 
