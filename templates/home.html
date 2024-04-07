@@ -9,119 +9,7 @@
       rel="stylesheet"
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
     />
-    <style>
-      .profile-pics-container {
-        position: absolute;
-        display: none;
-        background-color: #ffffff;
-        box-shadow: 0 2px 4px #0000001a;
-        border-radius: 10px;
-        padding: 20px;
-        right: 10%;
-        z-index: 1;
-      }
-      #profile-pics-grid {
-        display: grid;
-        max-width: fit-content;
-        grid-template-columns: repeat(4, 1fr);
-        column-gap: 5px;
-        row-gap: 5px;
-        margin-bottom: 10px;
-      }
-      .img {
-        width: 50px; /* Set width to 50px */
-        height: 50px; /* Set height to 50px */
-        object-fit: cover; /* Maintain aspect ratio and fill container */
-        border-radius: 50%;
-      }
-      .highlighted {
-        border: 1px solid #666;
-      }
-      .profile-pics-Apply {
-        display: flex;
-        justify-content: space-between;
-      }
-      .profile-pics-Apply button {
-        padding: 5px;
-        margin: 5px;
-      }
-
-      .menubar-container {
-        position: absolute;
-        background-color: #ffffff;
-        box-shadow: 0 2px 4px #000000;
-        border-radius: 10px;
-        padding: 20px;
-        z-index: 1;
-        display: none;
-      }
-      .menubar-container h3 {
-        padding: 5px;
-      }
-      .menubar-container h3:hover {
-        background-color: #aaa;
-      }
-      .closeButtons {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-      }
-      .closeButton {
-        display: block;
-        background-color: transparent;
-        font-size: 1rem;
-        border: none;
-        cursor: pointer;
-        padding: 5px;
-        transition: transform 0.3s ease;
-        transform: scale(1.5);
-      }
-      .closeButton:active {
-        transform: scale(2);
-        rotate: 45deg;
-      }
-      .sub-container {
-        position: relative;
-      }
-      .notification-container {
-        position: absolute;
-        width: 300px;
-        height: 80vh;
-        overflow: scroll;
-        background-color: #ffffff;
-        box-shadow: 0 2px 4px #000000;
-        border-radius: 10px;
-        padding: 20px;
-        right: 10vw;
-        display: none;
-        z-index: 2;
-      }
-      .notification-container p {
-        display: flex;
-        justify-content: space-between;
-        margin: 5px;
-      }
-      .notification-container span:hover {
-        background-color: #aaa;
-      }
-      .notification-container span {
-        display: block;
-        padding: 5px;
-      }
-      .notification-container span:nth-child(2) {
-        background-color: red;
-        width: 10px;
-      }
-      .selected {
-        background-color: #aaa;
-      }
-      .full-width {
-        width: 100%;
-      }
-      .zero-width {
-        display: none;
-      }
-    </style>
+    <style></style>
   </head>
   <body>
     <div class="container">
@@ -129,12 +17,11 @@
         <nav class="profile-navbar navbar">
           <div class="left-side">
             <div class="menubar">
-              <i class="bx bx-menu-alt-left" style="font-size: 3rem"></i>
+              <i class="bx bx-menu-alt-left"></i>
+              <span class="logo">𝔼𝕩-<span>Ⓣⓡⓐⓒⓚⓔⓡ</span></span>
             </div>
-            <div class="logo">
-              <span style="font-size: 3rem">𝔼𝕩-</span>
-              <span style="font-size: 2rem">Ⓣⓡⓐⓒⓚⓔⓡ</span>
-            </div>
+            <!-- <div class="logo">
+            </div> -->
           </div>
           <div class="right-side">
             <div class="profile flex">
@@ -189,7 +76,6 @@
             height="100%"
           ></iframe>
         </aside>
-
         <div class="sub-container">
           <div class="content">
             <header>
@@ -226,13 +112,14 @@
       const closeContainerButton = document.getElementById(
         "closeContainerButton"
       );
-      const dynamicAside = document.getElementById("dynamicAside");
+      const dynamicAside = document.querySelector("#dynamicAside");
       const subContainer = document.querySelector(".sub-container");
 
       // Add a click event listener to the closeContainerButton
       closeContainerButton.addEventListener("click", function () {
-        dynamicAside.classList.toggle('full-width');
-    subContainer.classList.toggle('zero-width');
+        closeContainerButton.classList.toggle("rotate90");
+        dynamicAside.classList.toggle("full-width");
+        subContainer.classList.toggle("zero-width");
       });
     </script>
   </body>

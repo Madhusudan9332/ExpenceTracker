@@ -110,6 +110,7 @@ const aside = document.getElementsByClassName("aside")[0];
 // Add click event listener to the button
 toggleAsideButton.addEventListener("click", () => {
   // Toggle the display property of the aside element
+  toggleAsideButton.classList.toggle("rotate90");
   const scm = document.getElementsByClassName("sub-container")[0];
   scm.style.marginLeft = scm.style.marginLeft == "0px" ? "20px" : "0px";
   aside.style.display = aside.style.display === "none" ? "block" : "none";
